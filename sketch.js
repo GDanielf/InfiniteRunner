@@ -1,24 +1,23 @@
-let imagemCenario;
-let imagemPersonagem;
-let cenario;
-let somDoJogo;
-
-function preload(){  
-  imagemCenario = loadImage('imagens/cenario/floresta.png');
-  imagemPersonagem = loadImage('imagens/personagem/correndo.png');
-  somDoJogo = loadSound('sons/trilha_jogo.mp3');
-}
-
+//()=>: recebe uma funcao como parametro
 function setup() {
   frameRate(30);
-  createCanvas(windowWidth, windowHeight);
-  cenario = new Cenario(imagemCenario,2);
-  personagem = new Personagem(imagemPersonagem);
+  createCanvas(windowWidth, windowHeight);  
+  //somDoJogo.loop();
+  jogo = new Jogo();
+  telaInicial = new TelaInicial();
+  jogo.setup();
+  //cenas nesse caso de baixo eh um objeto em JS parecido com dicionarios de python
+  cenas = {
+    jogo,//jogo:jogo nao precisa colocar desse jeito pois o js ja etende
+    telaInicial
+  };
+  botaoGerenciador = new BotaoGerenciador('Iniciar', width/2, height/2);
+}
 
+function keyPressed(){
+  jogo.keyPressed(key);
 }
 
 function draw() {
-  cenario.exibe();
-  cenario.move();
-  personagem.exibe();
+  cenas[cenaAtual].draw();
 }
