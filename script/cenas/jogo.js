@@ -7,7 +7,15 @@ class Jogo {
   }
   setup() {
     createCanvas(windowWidth, windowHeight);
-    cenario = new Cenario(imagemCenario, 2);
+    cenario_sky = new Cenario(imagemCenario_sky, 1);
+    cenario_clouds1 = new Cenario(imagemCenario_clouds1, 2);
+    cenario_clouds2 = new Cenario(imagemCenario_clouds2, 4);
+    cenario_rocks = new Cenario(imagemCenario_rocks, 6);
+    cenario_ground1 = new Cenario(imagemCenario_ground1, 8);
+    cenario_ground2 = new Cenario(imagemCenario_ground2, 10);
+    cenario_ground3 = new Cenario(imagemCenario_ground3, 12);
+    cenario_floor = new Cenario(imagemCenario_floor, 16);
+    cenario_plants = new Cenario(imagemCenario_plants, 16);
     pontuacao = new Pontuacao();
     vida = new Vida(fita.configuracoes.vidaMaxima, fita.configuracoes.vidaInicial);
     
@@ -31,8 +39,26 @@ class Jogo {
 
   draw() {
     console.log(personagem.y)
-    cenario.exibe();
-    cenario.move();
+    //comeco parallax
+    cenario_sky.exibe();
+    cenario_sky.move();
+    cenario_clouds1.exibe();
+    cenario_clouds1.move();
+    cenario_clouds2.exibe();
+    cenario_clouds2.move();
+    cenario_rocks.exibe();
+    cenario_rocks.move();
+    cenario_ground1.exibe();
+    cenario_ground1.move();
+    cenario_ground2.exibe();
+    cenario_ground2.move();
+    cenario_plants.exibe();
+    cenario_plants.move();
+    cenario_ground3.exibe();
+    cenario_ground3.move();
+    cenario_floor.exibe();
+    cenario_floor.move();
+    //fim parallax
     vida.draw();
     //manipulacao da variavel PersonagemChao para mudar a animacao de run para jump
     if(personagem.PersonagemChao){
@@ -59,8 +85,8 @@ class Jogo {
       
     inimigo.velocidade = linhaAtual.velocidade;
 
-    inimigo.exibe();
-    inimigo.move();
+    //inimigo.exibe();
+    //inimigo.move();
 
     if (inimigoVisivel) {
       this.indiceInimigo++;
@@ -75,7 +101,7 @@ class Jogo {
       personagem.tornarInvencivel();
       if(vida.vidas === 0){
         image(imagemGameOver, width / 2 - 200, height / 2);
-        noLoop();
+        //noLoop();
       }
     }
   }

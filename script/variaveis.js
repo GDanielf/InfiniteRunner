@@ -1,10 +1,29 @@
 //inicializar as imagens
-let imagemCenario;
 let imagemPersonagem;
 let imagemInimigo;
 let imagemInimigoGrande;
 let imagemInimigoVoador;
-let cenario;
+//parallax
+let cenario_sky;
+let cenario_clouds1;
+let cenario_clouds2;
+let cenario_rocks;
+let cenario_ground1;
+let cenario_ground2;
+let cenario_ground3;
+let cenario_floor;
+let cenario_plants;
+let imagemCenario;
+let imagemCenario_sky;
+let imagemCenario_clouds1;
+let imagemCenario_clouds2;
+let imagemCenario_rocks;
+let imagemCenario_ground1;
+let imagemCenario_ground2;
+let imagemCenario_ground3;
+let imagemCenario_floor;
+let imagemCenario_plants;
+
 let imagemGameOver;
 let imagemTelaInicial;
 let fonteTelaInicial;
