@@ -18,6 +18,6 @@ function keyPressed(){
   jogo.keyPressed(key);
 }
 
-function draw() {
+function draw(){
   cenas[cenaAtual].draw();
 }

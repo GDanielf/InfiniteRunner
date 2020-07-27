@@ -12,8 +12,11 @@ function preload(){
   imagemCenario_floor = loadImage('imagens/cenario/floor.png');
   //gameover
   imagemGameOver = loadImage('imagens/assets/gameOver.png');
+  //personagem
   imagemPersonagem = loadImage('imagens/personagem/spridesheet_run.png');
   imagem_pulo = loadImage('imagens/personagem/spridesheet_jump.png');  
+  imagem_idle = loadImage('imagens/personagem/spridesheet_idle.png')
+  //inimigo
   imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
   imagemInimigoGrande = loadImage('imagens/inimigos/troll.png');
   imagemInimigoVoador = loadImage('imagens/inimigos/gotinha-voadora.png');

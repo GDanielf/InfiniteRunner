@@ -30,7 +30,7 @@ class Animacao {
   }
   
   animacao_pulo(){
-    image(this.imagem_pulo, this.x, this.y, 100, 100, this.matrizPersonagemPulo[this.frameAtual][0], this.matrizPersonagemPulo[this.frameAtual][1], 1040, 1040);
+    image(this.imagem_pulo, this.x, this.y, this.largura, this.altura, this.matrizPersonagemPulo[this.frameAtual][0], this.matrizPersonagemPulo[this.frameAtual][1], 1040, 1040);
     
     this.anima();
   }  

@@ -16,11 +16,11 @@ class Cenario{
     this.x2 = this.x2 - this.velocidade;
     
     if (this.x2 <= -width) {
-      this.x2 = width
+      this.x2 = width;
     }
 
     if(this.x1 <= -width){
-      this.x1 = width
+      this.x1 = width;
     }    
   }
 }

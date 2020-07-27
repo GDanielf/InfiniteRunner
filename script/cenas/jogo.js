@@ -7,7 +7,8 @@ class Jogo {
   }
   setup() {
     createCanvas(windowWidth, windowHeight);
-    cenario_sky = new Cenario(imagemCenario_sky, 1);
+    //parallax
+    cenario_sky = new Cenario(imagemCenario_sky, 0);
     cenario_clouds1 = new Cenario(imagemCenario_clouds1, 2);
     cenario_clouds2 = new Cenario(imagemCenario_clouds2, 4);
     cenario_rocks = new Cenario(imagemCenario_rocks, 6);
@@ -28,17 +29,18 @@ class Jogo {
     inimigos.push(inimigo);
     inimigos.push(inimigoGrande);
     inimigos.push(inimigoVoador);
+    
   }
 
-  keyPressed(key) {
+  keyPressed(key) {    
     if (key === 'ArrowUp' && personagem.ContDePulo > 0) {
       personagem.pula();
       //somDoPulo.play();
-    }
-  }  
+    }    
+  }
 
   draw() {
-    console.log(personagem.y)
+    console.log(personagem.x)
     //comeco parallax
     cenario_sky.exibe();
     cenario_sky.move();
@@ -75,9 +77,17 @@ class Jogo {
     }
     
     personagem.aplicaGravidade();
-    pontuacao.exibe();
+    pontuacao.exibe();   
     
-    
+    //CONTROLE DO PERSONAGEM
+    if(keyIsDown(RIGHT_ARROW)){
+      personagem.moveForward();
+    }
+    if(keyIsDown(LEFT_ARROW)) {
+      personagem.moveBackwards();
+    }
+
+
     pontuacao.adicionarPontos();
     const linhaAtual = this.mapa[this.indiceInimigo]
     const inimigo = inimigos[linhaAtual.inimigo]

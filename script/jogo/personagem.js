@@ -18,6 +18,14 @@ class Personagem extends Animacao{
     this.PersonagemChao = false;
   }
   
+  moveForward(){
+    this.x+=10;
+  }
+
+  moveBackwards(){
+    this.x-=10;
+  }
+
   aplicaGravidade(){
     this.y = this.y + this.velocidadeDoPulo;
     this.velocidadeDoPulo += this.gravidade;
