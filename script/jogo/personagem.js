@@ -1,5 +1,5 @@
 class Personagem extends Animacao{
-  constructor(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite){
+  constructor(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite, PersonagemChao, CharMoving){
     super(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite)
     this.matriz = matriz;
     this.variacaoY = variacaoY;
@@ -9,22 +9,50 @@ class Personagem extends Animacao{
     this.gravidade = 5;
     this.ContDePulo = 2;
     this.alturaDoPulo = -50;
-    this.invencivel = false;    
-  } 
+    this.invencivel = false;
+    this.PersonagemChao = PersonagemChao;
+    this.CharMoving = CharMoving;    
+  }
+
+  isCharFloor(){
+    if(this.y === this.yInicial){
+      this.PersonagemChao = true;
+    }
+    if(this.y < this.yInicial){
+      this.PersonagemChao = false;
+    }
+    return this.PersonagemChao;
+  }
 
   pula(){    
     this.velocidadeDoPulo = this.alturaDoPulo;
-    this.ContDePulo -=1;
-    this.PersonagemChao = false;
+    this.ContDePulo -=1;    
   }
   
-  moveForward(){
-    this.x+=10;
-  }
-
-  moveBackwards(){
-    this.x-=10;
-  }
+  moveChar(){    
+    if(keyIsDown(RIGHT_ARROW) && this.isCharFloor()){
+      this.x += 10;
+      this.animacao_char_move();
+      this.CharMoving = true;      
+    }
+    else if (keyIsDown(LEFT_ARROW) && this.isCharFloor()){
+      this.x-=10;
+      this.animacao_char_move();
+      this.CharMoving = true; 
+    }
+    else if (keyIsDown(RIGHT_ARROW) && !this.isCharFloor()) {
+      this.x += 10;      
+      this.CharMoving = true;
+    }
+    else if (keyIsDown(LEFT_ARROW) && !this.isCharFloor()){
+      this.x -= 10; 
+      this.CharMoving = true;
+    } 
+    else{
+      this.x = this.x;
+      this.CharMoving = false;
+    } 
+  }  
 
   aplicaGravidade(){
     this.y = this.y + this.velocidadeDoPulo;

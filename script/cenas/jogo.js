@@ -21,7 +21,7 @@ class Jogo {
     vida = new Vida(fita.configuracoes.vidaMaxima, fita.configuracoes.vidaInicial);
     
     var alturaChar = 60;
-    personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, alturaChar, 100, 100, 260, 260);//(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite)
+    personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, alturaChar, 100, 100, 260, 260, true, false);//(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite, PersonagemChao, CharMoving)
     const inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, alturaChar, 52, 52, 104, 104, 10)
     const inimigoGrande = new Inimigo(matrizInimigoGrande, imagemInimigoGrande, width, alturaChar-18, 200, 200, 400, 400, 10)
     const inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 52, 200, 100, 75, 200, 150, 10)
@@ -35,12 +35,14 @@ class Jogo {
   keyPressed(key) {    
     if (key === 'ArrowUp' && personagem.ContDePulo > 0) {
       personagem.pula();
+      personagem.PersonagemChao = false;
       //somDoPulo.play();
     }    
-  }
+  } 
 
   draw() {
-    console.log(personagem.x)
+    console.log(personagem.CharMoving);
+    
     //comeco parallax
     cenario_sky.exibe();
     cenario_sky.move();
@@ -63,29 +65,23 @@ class Jogo {
     //fim parallax
     vida.draw();
     //manipulacao da variavel PersonagemChao para mudar a animacao de run para jump
-    if(personagem.PersonagemChao){
-      personagem.exibe();
-      if(personagem.y < personagem.yInicial){
-        personagem.PersonagemChao = false;
-      }
-    }
-    if(!personagem.PersonagemChao){
-      personagem.animacao_pulo();
-      if(personagem.y === personagem.yInicial){
-        personagem.PersonagemChao = true;
-      }
+    if (personagem.isCharFloor() && !personagem.CharMoving){      
+      personagem.sel_animation(personagem.animacao_char_idle());      
+    }   
+    
+    personagem.moveChar()
+    
+    if (!personagem.isCharFloor()){      
+      personagem.sel_animation(personagem.animacao_pulo());      
     }
     
     personagem.aplicaGravidade();
     pontuacao.exibe();   
     
     //CONTROLE DO PERSONAGEM
-    if(keyIsDown(RIGHT_ARROW)){
-      personagem.moveForward();
-    }
-    if(keyIsDown(LEFT_ARROW)) {
-      personagem.moveBackwards();
-    }
+    
+
+      
 
 
     pontuacao.adicionarPontos();
