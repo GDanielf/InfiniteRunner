@@ -15,7 +15,9 @@ function preload(){
   //personagem
   imagemPersonagem = loadImage('imagens/personagem/spridesheet_run.png');
   imagem_pulo = loadImage('imagens/personagem/spridesheet_jump.png');  
-  imagem_idle = loadImage('imagens/personagem/spridesheet_idle.png')
+  imagem_idle = loadImage('imagens/personagem/spridesheet_idle.png');
+  imagem_pulo_reverso = loadImage('imagens/personagem/spridesheet_jump_reverse.png');
+  imagem_Personagem_Reverso = loadImage('imagens/personagem/spridesheet_run_reverse.png')
   //inimigo
   imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
   imagemInimigoGrande = loadImage('imagens/inimigos/troll.png');

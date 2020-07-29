@@ -3,7 +3,7 @@ class Personagem extends Animacao{
     super(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite)
     this.matriz = matriz;
     this.variacaoY = variacaoY;
-    this.yInicial = height - this.altura - this.variacaoY;
+    this.yInicial = height - this.altura - this.variacaoY-20;
     this.y = this.yInicial
     this.velocidadeDoPulo = 0;
     this.gravidade = 5;
@@ -11,7 +11,9 @@ class Personagem extends Animacao{
     this.alturaDoPulo = -50;
     this.invencivel = false;
     this.PersonagemChao = PersonagemChao;
-    this.CharMoving = CharMoving;    
+    this.CharMoving = CharMoving;
+    this.charVel = 0; 
+    this.reverse = false;   
   }
 
   isCharFloor(){
@@ -30,27 +32,48 @@ class Personagem extends Animacao{
   }
   
   moveChar(){    
-    if(keyIsDown(RIGHT_ARROW) && this.isCharFloor()){
+    if(keyIsDown(RIGHT_ARROW) && this.isCharFloor() && this.x<width/2){
+      this.charVel = 2;
       this.x += 10;
       this.animacao_char_move();
-      this.CharMoving = true;      
-    }
-    else if (keyIsDown(LEFT_ARROW) && this.isCharFloor()){
-      this.x-=10;
-      this.animacao_char_move();
-      this.CharMoving = true; 
-    }
-    else if (keyIsDown(RIGHT_ARROW) && !this.isCharFloor()) {
-      this.x += 10;      
       this.CharMoving = true;
+      this.reverse = false;      
     }
-    else if (keyIsDown(LEFT_ARROW) && !this.isCharFloor()){
-      this.x -= 10; 
-      this.CharMoving = true;
-    } 
-    else{
+    else if (keyIsDown(RIGHT_ARROW) && this.isCharFloor() && this.x === width / 2) {
+      this.charVel = 2;
       this.x = this.x;
-      this.CharMoving = false;
+      this.animacao_char_move();
+      this.CharMoving = true;
+      this.reverse = false; 
+    }     
+    else if (keyIsDown(LEFT_ARROW) && this.isCharFloor() && (this.x>=20 && this.x <= width / 2)){
+      //this.charVel = -2;
+      this.x-=10;
+      this.animacao_char_moveReverse();
+      this.CharMoving = true;
+      this.reverse = true; 
+    }
+    else if (keyIsDown(RIGHT_ARROW) && !this.isCharFloor() && this.x < width / 2) {
+      this.x+=10;
+      this.charVel = 2;     
+      this.CharMoving = true;
+      this.reverse = false; 
+    }
+    else if (keyIsDown(RIGHT_ARROW) && !this.isCharFloor() && this.x === width / 2){
+      this.x=this.x
+      this.charVel = 2;
+      this.CharMoving = true;
+      this.reverse = false; 
+    }
+    else if (keyIsDown(LEFT_ARROW) && !this.isCharFloor() && (this.x>=20 && this.x<=width/2)){
+      //this.charVel = -2;
+      this.x-=10; 
+      this.CharMoving = true;
+      this.reverse = true; 
+    }    
+    else{
+      this.charVel = 0;
+      this.CharMoving = false;      
     } 
   }  
 

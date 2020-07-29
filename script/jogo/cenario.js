@@ -1,7 +1,6 @@
 class Cenario{
-  constructor(imagem, velocidade){
-    this.imagem = imagem;
-    this.velocidade = velocidade;
+  constructor(imagem){
+    this.imagem = imagem;    
     this.x1 = 0;
     this.x2 = width;
   }
@@ -11,9 +10,9 @@ class Cenario{
     image(this.imagem, this.x2, 0, width, height);    
   }
   
-  move(){
-    this.x1 = this.x1 - this.velocidade;
-    this.x2 = this.x2 - this.velocidade;
+  move(velocidade){
+    this.x1 = this.x1 - velocidade;
+    this.x2 = this.x2 - velocidade;
     
     if (this.x2 <= -width) {
       this.x2 = width;

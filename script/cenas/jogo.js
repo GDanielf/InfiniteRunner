@@ -8,20 +8,20 @@ class Jogo {
   setup() {
     createCanvas(windowWidth, windowHeight);
     //parallax
-    cenario_sky = new Cenario(imagemCenario_sky, 0);
-    cenario_clouds1 = new Cenario(imagemCenario_clouds1, 2);
-    cenario_clouds2 = new Cenario(imagemCenario_clouds2, 4);
-    cenario_rocks = new Cenario(imagemCenario_rocks, 6);
-    cenario_ground1 = new Cenario(imagemCenario_ground1, 8);
-    cenario_ground2 = new Cenario(imagemCenario_ground2, 10);
-    cenario_ground3 = new Cenario(imagemCenario_ground3, 12);
-    cenario_floor = new Cenario(imagemCenario_floor, 16);
-    cenario_plants = new Cenario(imagemCenario_plants, 16);
+    cenario_sky = new Cenario(imagemCenario_sky);
+    cenario_clouds1 = new Cenario(imagemCenario_clouds1);
+    cenario_clouds2 = new Cenario(imagemCenario_clouds2);
+    cenario_rocks = new Cenario(imagemCenario_rocks);
+    cenario_ground1 = new Cenario(imagemCenario_ground1);
+    cenario_ground2 = new Cenario(imagemCenario_ground2);
+    cenario_ground3 = new Cenario(imagemCenario_ground3);
+    cenario_floor = new Cenario(imagemCenario_floor);
+    cenario_plants = new Cenario(imagemCenario_plants);
     pontuacao = new Pontuacao();
     vida = new Vida(fita.configuracoes.vidaMaxima, fita.configuracoes.vidaInicial);
     
     var alturaChar = 60;
-    personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, alturaChar, 100, 100, 260, 260, true, false);//(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite, PersonagemChao, CharMoving)
+    personagem = new Personagem(matrizPersonagem, imagemPersonagem, 20, alturaChar, 100, 100, 260, 260, true, false);//(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite, PersonagemChao, CharMoving)
     const inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, alturaChar, 52, 52, 104, 104, 10)
     const inimigoGrande = new Inimigo(matrizInimigoGrande, imagemInimigoGrande, width, alturaChar-18, 200, 200, 400, 400, 10)
     const inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 52, 200, 100, 75, 200, 150, 10)
@@ -37,31 +37,31 @@ class Jogo {
       personagem.pula();
       personagem.PersonagemChao = false;
       //somDoPulo.play();
-    }    
+    }        
   } 
 
   draw() {
-    console.log(personagem.CharMoving);
+    console.log(personagem.x);
     
     //comeco parallax
     cenario_sky.exibe();
-    cenario_sky.move();
+    cenario_sky.move(0);
     cenario_clouds1.exibe();
-    cenario_clouds1.move();
+    cenario_clouds1.move(personagem.charVel);
     cenario_clouds2.exibe();
-    cenario_clouds2.move();
+    cenario_clouds2.move(personagem.charVel*2);
     cenario_rocks.exibe();
-    cenario_rocks.move();
+    cenario_rocks.move(personagem.charVel * 3);
     cenario_ground1.exibe();
-    cenario_ground1.move();
+    cenario_ground1.move(personagem.charVel * 4);
     cenario_ground2.exibe();
-    cenario_ground2.move();
+    cenario_ground2.move(personagem.charVel * 5);
     cenario_plants.exibe();
-    cenario_plants.move();
+    cenario_plants.move(personagem.charVel * 8);
     cenario_ground3.exibe();
-    cenario_ground3.move();
+    cenario_ground3.move(personagem.charVel * 6);
     cenario_floor.exibe();
-    cenario_floor.move();
+    cenario_floor.move(personagem.charVel * 8);
     //fim parallax
     vida.draw();
     //manipulacao da variavel PersonagemChao para mudar a animacao de run para jump
@@ -71,18 +71,15 @@ class Jogo {
     
     personagem.moveChar()
     
-    if (!personagem.isCharFloor()){      
+    if (!personagem.isCharFloor() && !personagem.reverse){      
       personagem.sel_animation(personagem.animacao_pulo());      
+    }
+    else if (!personagem.isCharFloor() && personagem.reverse){
+      personagem.sel_animation(personagem.animacao_pulo_reverso());
     }
     
     personagem.aplicaGravidade();
-    pontuacao.exibe();   
-    
-    //CONTROLE DO PERSONAGEM
-    
-
-      
-
+    pontuacao.exibe();    
 
     pontuacao.adicionarPontos();
     const linhaAtual = this.mapa[this.indiceInimigo]
@@ -91,7 +88,7 @@ class Jogo {
       
     inimigo.velocidade = linhaAtual.velocidade;
 
-    //inimigo.exibe();
+    //inimigo.animacao_char_move();
     //inimigo.move();
 
     if (inimigoVisivel) {
