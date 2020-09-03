@@ -39,7 +39,7 @@ let vida;
 let somDoPulo;
 let somDoJogo;
 //inicializa cenas
-let cenaAtual = 'jogo';
+let cenaAtual = 'telaInicial';
 let cenas;
 let telaInicial;
 let jogo;

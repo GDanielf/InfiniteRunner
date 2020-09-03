@@ -17,9 +17,9 @@ class TelaInicial{
     textFont(fonteTelaInicial);
     textAlign(CENTER)
     textSize(50);
-    text('As aventuras de', width/2, 100);
+    text('Super', width/2, 100);
     textSize(100);
-    text('Hipsta',width/2, 185);    
+    text('WaRior',width/2, 185);    
   }
   
   _botao(){

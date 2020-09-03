@@ -1,0 +1,24 @@
+{
+  "name": "infiniterunner",
+  "version": "1.0.0",
+  "description": "My first game",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GDanielf/InfiniteRunner.git"
+  },
+  "keywords": [
+    "super",
+    "warior",
+    "game"
+  ],
+  "author": "gudanielf at gmail dot com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GDanielf/InfiniteRunner/issues"
+  },
+  "homepage": "https://github.com/GDanielf/InfiniteRunner#readme"
+}
