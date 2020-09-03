@@ -22,14 +22,13 @@ class Jogo {
     
     var alturaChar = 60;
     personagem = new Personagem(matrizPersonagem, imagemPersonagem, 20, alturaChar, 100, 100, 260, 260, true, false);//(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite, PersonagemChao, CharMoving)
-    const inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, alturaChar, 52, 52, 104, 104, 10)
-    const inimigoGrande = new Inimigo(matrizInimigoGrande, imagemInimigoGrande, width, alturaChar-18, 200, 200, 400, 400, 10)
-    const inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 52, 200, 100, 75, 200, 150, 10)
-    //somDoJogo.loop();  
-    inimigos.push(inimigo);
-    inimigos.push(inimigoGrande);
-    inimigos.push(inimigoVoador);
-    
+    const enemy_liz = new Inimigo(matrizLizard, imagemLizard, width - 52, alturaChar-5, 140, 140, 100, 100, 10);//(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite,  velocidade)
+    const enemy_smallDragon = new Inimigo(matrizSmallDragon, imagemSmallDragon, width - 52, alturaChar-15, 140, 140, 85, 85, 10);//(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite,  velocidade)
+    const enemy_demon = new Inimigo(matrizDemon, imagemDemon, width - 52, alturaChar+15, 140, 140, 90, 90, 10);//(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite,  velocidade)
+    //somDoJogo.loop();    
+    inimigos.push(enemy_liz);
+    inimigos.push(enemy_smallDragon);
+    inimigos.push(enemy_demon);
   }
 
   keyPressed(key) {    
@@ -88,8 +87,8 @@ class Jogo {
       
     inimigo.velocidade = linhaAtual.velocidade;
 
-    //inimigo.animacao_char_move();
-    //inimigo.move();
+    inimigo.animacao_char_move();
+    inimigo.move();
 
     if (inimigoVisivel) {
       this.indiceInimigo++;
@@ -104,7 +103,7 @@ class Jogo {
       personagem.tornarInvencivel();
       if(vida.vidas === 0){
         image(imagemGameOver, width / 2 - 200, height / 2);
-        //noLoop();
+        noLoop();
       }
     }
   }

@@ -19,9 +19,9 @@ function preload(){
   imagem_pulo_reverso = loadImage('imagens/personagem/spridesheet_jump_reverse.png');
   imagem_Personagem_Reverso = loadImage('imagens/personagem/spridesheet_run_reverse.png')
   //inimigo
-  imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
-  imagemInimigoGrande = loadImage('imagens/inimigos/troll.png');
-  imagemInimigoVoador = loadImage('imagens/inimigos/gotinha-voadora.png');
+  imagemLizard = loadImage('imagens/inimigos/lizard.png');
+  imagemSmallDragon = loadImage('imagens/inimigos/smallDragon.png');
+  imagemDemon = loadImage('imagens/inimigos/demon.png');
   imagemTelaInicial = loadImage('imagens/cenario/telaInicial.png');
   imagemVida = loadImage('imagens/assets/coracao.png');
   fonteTelaInicial = loadFont('imagens/assets/fonteTelaInicial.otf');

@@ -1,8 +1,8 @@
 //inicializar as imagens
 let imagemPersonagem;
-let imagemInimigo;
-let imagemInimigoGrande;
-let imagemInimigoVoador;
+let imagemLizard;
+let imagemSmallDragon;
+let imagemDemon;
 //parallax
 let cenario_sky;
 let cenario_clouds1;
@@ -46,11 +46,36 @@ let jogo;
 let botaoGerenciador;
 
 let matrizInimigo = [];
-for(var col_inim = 0; col_inim<=626;col_inim+=104){
-  for(var lin_inim = 0; lin_inim<=312; lin_inim+=104){
-    matrizInimigo.push([lin_inim,col_inim])
+for(var y_inim = 0; y_inim<=626;y_inim+=104){
+  for(var x_inim = 0; x_inim<=312; x_inim+=104){
+    matrizInimigo.push([x_inim,y_inim])
   }
 }
+
+let matrizLizard = []
+for (var y_liz = 0; y_liz <= 300; y_liz+=100){
+  for (var x_liz = 0; x_liz <= 300; x_liz+=100){
+    matrizLizard.push([x_liz,y_liz]);
+  }
+}
+
+let matrizDemon = [];
+for(var y_demon = 0; y_demon<=270; y_demon+=90){
+  for(var x_demon = 0; x_demon<=180; x_demon+=90){
+    matrizDemon.push([x_demon,y_demon]);
+  }
+}
+
+let matrizSmallDragon = [
+  [0,0],
+  [85,0],
+  [170,0],
+  [0,85],
+  [85,85],
+  [170,85],
+  [85,170],
+  [170,170]
+];
 
 let matrizPersonagem = [
   [0,0],

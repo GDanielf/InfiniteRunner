@@ -33,7 +33,7 @@ class Personagem extends Animacao{
   
   moveChar(){    
     if(keyIsDown(RIGHT_ARROW) && this.isCharFloor() && this.x<width/2){
-      this.charVel = 2;
+      //this.charVel = 2;
       this.x += 10;
       this.animacao_char_move();
       this.CharMoving = true;
@@ -47,7 +47,7 @@ class Personagem extends Animacao{
       this.reverse = false; 
     }     
     else if (keyIsDown(LEFT_ARROW) && this.isCharFloor() && (this.x>=20 && this.x <= width / 2)){
-      //this.charVel = -2;
+      this.charVel = 0;
       this.x-=10;
       this.animacao_char_moveReverse();
       this.CharMoving = true;
@@ -55,7 +55,7 @@ class Personagem extends Animacao{
     }
     else if (keyIsDown(RIGHT_ARROW) && !this.isCharFloor() && this.x < width / 2) {
       this.x+=10;
-      this.charVel = 2;     
+      //this.charVel = 2;     
       this.CharMoving = true;
       this.reverse = false; 
     }
@@ -66,7 +66,7 @@ class Personagem extends Animacao{
       this.reverse = false; 
     }
     else if (keyIsDown(LEFT_ARROW) && !this.isCharFloor() && (this.x>=20 && this.x<=width/2)){
-      //this.charVel = -2;
+      this.charVel = 0;
       this.x-=10; 
       this.CharMoving = true;
       this.reverse = true; 

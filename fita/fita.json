@@ -4,13 +4,10 @@
     "vidaMaxima": 5,
     "vidaInicial": 5
 },
-  "mapa": [{
-        "inimigo": 0,
-        "velocidade": 10
-      },
+  "mapa": [
       {
-        "inimigo": 1,
-        "velocidade": 30
+        "inimigo":0,
+        "velocidade": 10
       },
       {
         "inimigo": 1,
@@ -18,7 +15,7 @@
       },
       {
         "inimigo": 2,
-        "velocidade": 40
+        "velocidade": 20
       }
     ]
 }
